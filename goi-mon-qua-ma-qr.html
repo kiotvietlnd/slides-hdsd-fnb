@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng Dẫn Gọi Món Qua QR - KiotViet FNB</title>
+    <title>Hướng Dẫn Gọi Món Qua QR - Full Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -33,27 +33,28 @@
         }
     </script>
     <style>
-        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; background-color: #fff7ed; } /* Orange Tint Background */
-        
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; background-color: #fff7ed; }
         .slide { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease-in-out; z-index: 10; flex-direction: column; }
         .slide.active { display: flex; opacity: 1; }
-        
-        /* GLASS EFFECT */
         .glass {
             background: rgba(255, 255, 255, 0.65); 
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
-
         #global-logo { position: fixed; top: 24px; left: 32px; height: 36px; z-index: 9999; transition: opacity 0.3s ease; }
         .animate-zoom-in { opacity: 0; }
         .slide.active .animate-zoom-in { animation-play-state: running; }
+        
+        /* Progress Bar */
+        #progress-bar { position: fixed; bottom: 0; left: 0; height: 4px; background: #f97316; width: 0%; z-index: 10000; transition: width 0.3s; }
     </style>
 </head>
 <body class="text-gray-800 relative select-none cursor-none">
 
     <img id="global-logo" src="https://logo.kiotviet.vn/KiotViet-Logo-Horizontal.svg" alt="KiotViet Logo">
+
+    <div id="progress-bar"></div>
 
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div class="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob"></div>
@@ -65,84 +66,112 @@
 
         <div class="slide flex items-center justify-center p-8">
             <div class="bg-white/80 backdrop-blur-xl p-12 rounded-3xl shadow-2xl border border-white/50 max-w-5xl w-full text-center animate-zoom-in">
-                <h1 class="text-6xl font-extrabold text-blue-900 mb-6 leading-tight">GỌI MÓN QUA MÃ QR</h1>
+                <h1 class="text-6xl font-extrabold text-blue-900 mb-6 leading-tight">HƯỚNG DẪN SỬ DỤNG<br>GỌI MÓN QUA MÃ QR</h1>
                 <div class="h-2 w-32 bg-orange-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-2xl text-gray-600 font-medium">Giải pháp Menu Điện Tử cho Ngành F&B</p>
-                <div class="mt-8 flex justify-center gap-4 text-orange-600 text-3xl">
-                    <i class="fa-solid fa-utensils"></i>
-                    <i class="fa-solid fa-qrcode"></i>
-                    <i class="fa-solid fa-mobile-screen"></i>
-                </div>
+                <p class="text-2xl text-gray-600 font-medium">Chi tiết thao tác từ A-Z (Full Mode)</p>
             </div>
         </div>
 
         <div class="slide glass flex items-center justify-center p-12">
             <div class="flex flex-row items-center gap-12 max-w-6xl w-full">
                 <div class="flex-1 text-right border-r-4 border-orange-500 pr-12 animate-zoom-in">
-                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Giới Thiệu Chung</h2>
+                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Phần 1:<br>Kích Hoạt & Thiết Lập</h2>
                 </div>
                 <div class="flex-1 animate-zoom-in delay-100">
-                     <ul class="space-y-6">
-                        <li class="flex items-center gap-4 text-2xl text-gray-800 font-medium">
-                            <i class="fa-solid fa-check-circle text-orange-500"></i> Nâng cao trải nghiệm khách hàng
-                        </li>
-                        <li class="flex items-center gap-4 text-2xl text-gray-800 font-medium">
-                            <i class="fa-solid fa-check-circle text-orange-500"></i> Giảm tải áp lực nhân viên
-                        </li>
-                        <li class="flex items-center gap-4 text-2xl text-gray-800 font-medium">
-                            <i class="fa-solid fa-check-circle text-orange-500"></i> Vận hành mượt mà
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide glass flex items-center justify-center p-12">
-            <div class="flex flex-row items-center gap-12 max-w-6xl w-full">
-                <div class="flex-1 text-right border-r-4 border-blue-600 pr-12 animate-zoom-in">
-                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Thiết Lập Ban Đầu</h2>
-                </div>
-                <div class="flex-1 animate-zoom-in delay-100">
-                    <p class="text-2xl text-gray-700">Hướng dẫn kích hoạt và cài đặt Menu QR.</p>
+                    <p class="text-2xl text-gray-700">Cài đặt Menu, Phương thức thanh toán và In mã QR.</p>
                 </div>
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Kích Hoạt Tính Năng</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Vào Phòng/Bàn -> Chọn "Gọi món qua mã QR".</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B1: Kích Hoạt Tính Năng</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Vào Phòng/Bàn > Chọn "Gọi món qua mã QR".</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05013912/GMQRF_051225-2.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Màn Hình Chào</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Nhấn "Thiết lập ngay" để bắt đầu cấu hình.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B2: Bắt Đầu Thiết Lập</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Nhấn nút "Thiết lập ngay".</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05013920/GMQRF_051225-3.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Cấu Hình Thực Đơn</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Chọn các món hiển thị trên Menu điện tử.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B3: Giao Diện Thiết Lập</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Tổng quan các mục cần cài đặt.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05013932/GMQRF_051225-4.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+        
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B3 (Tiếp): Chi Tiết Thiết Lập</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05013941/GMQRF_051225-5.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B4: Chọn Thực Đơn</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Tích chọn các món muốn hiển thị trên QR Menu.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05013950/GMQRF_051225-6.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Phương Thức Thanh Toán</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Lựa chọn: Thanh toán Sau (cuối bữa) hoặc Thanh toán Trước (Online).</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B5: Ẩn/Hiện Món</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Bỏ chọn "Bán trực tiếp" để ẩn món khỏi Menu.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014000/GMQRF_051225-7.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B6: Cấu Hình Tồn Kho</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Cho phép gọi món ngay cả khi hết tồn kho (nếu cần).</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014010/GMQRF_051225-8.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B7: Chọn Hình Thức Thanh Toán</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Thanh toán sau (Cuối bữa) hoặc Thanh toán trước.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014020/GMQRF_051225-9.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Tải Mã QR</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Tải bộ mã QR gắn với từng bàn để in và dán.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B7 (Tiếp): Cấu Hình Ngân Hàng</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Chọn tài khoản ngân hàng nhận tiền nếu Thanh toán trước.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014029/GMQRF_051225-10.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B7 (Tiếp): Cấu Hình Ví Điện Tử</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014038/GMQRF_051225-11.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B8: Tải Mã QR (Cách 1)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Tải tất cả mã QR tại màn hình thiết lập.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014045/GMQRF_051225-12.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">B8: Tải Mã QR (Cách 2)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Tải từng mã tại màn hình Quản lý Phòng Bàn.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014051/GMQRF_051225-13.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
@@ -151,33 +180,41 @@
         <div class="slide glass flex items-center justify-center p-12">
             <div class="flex flex-row items-center gap-12 max-w-6xl w-full">
                 <div class="flex-1 text-right border-r-4 border-orange-500 pr-12 animate-zoom-in">
-                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Quy Trình<br>Khách Hàng</h2>
+                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Phần 2:<br>Khách Hàng Gọi Món</h2>
                 </div>
                 <div class="flex-1 animate-zoom-in delay-100">
-                    <p class="text-2xl text-gray-700">Trải nghiệm gọi món trên điện thoại của khách.</p>
+                    <p class="text-2xl text-gray-700">Trải nghiệm trên điện thoại của khách hàng.</p>
                 </div>
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Khách Chọn Món</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Giao diện Menu điện tử thân thiện trên điện thoại.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">K1: Xem Menu & Chọn Món</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Khách quét mã, chọn món và bấm "Xác nhận gọi món".</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014104/GMQRF_051225-14.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Xác Nhận Đơn Hàng</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Khách kiểm tra lại giỏ hàng và gửi yêu cầu.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">K2: Xác Nhận (Thanh Toán Sau)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Khách kiểm tra giỏ hàng và gửi đơn.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014116/GMQRF_051225-15.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Theo Dõi Trạng Thái</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Xem trực tiếp món đang chế biến, đã phục vụ hay đã hủy.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">K2: Xác Nhận (Thanh Toán Trước)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Khách thực hiện chuyển khoản QR trước khi gửi đơn.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014130/GMQRF_051225-16.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">K3: Theo Dõi Trạng Thái</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Khách xem được món nào đang chờ, món nào đã xong.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014138/GMQRF_051225-17.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
@@ -186,89 +223,293 @@
         <div class="slide glass flex items-center justify-center p-12">
             <div class="flex flex-row items-center gap-12 max-w-6xl w-full">
                 <div class="flex-1 text-right border-r-4 border-blue-600 pr-12 animate-zoom-in">
-                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Quy Trình Nhân Viên</h2>
+                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Phần 3:<br>Nhân Viên Xử Lý</h2>
                 </div>
                 <div class="flex-1 animate-zoom-in delay-100">
-                    <p class="text-2xl text-gray-700">Tiếp nhận và xử lý đơn trên máy Thu ngân.</p>
+                    <p class="text-2xl text-gray-700">Thao tác trên máy Thu ngân (PC).</p>
                 </div>
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Thông Báo Gọi Món</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Thông báo Chip vàng kèm chuông khi có đơn mới.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">NV1: Nhận Thông Báo</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Chip vàng và chuông báo khi có đơn mới.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014151/GMQRF_051225-18.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Xác Nhận & Báo Bếp</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Duyệt đơn để in phiếu chế biến xuống bếp.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">NV2: Xem Chi Tiết</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Kiểm tra danh sách món khách gọi.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014206/GMQRF_051225-19.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">NV3: Xác Nhận & Báo Bếp</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Nhấn nút để in phiếu chế biến.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014219/GMQRF_051225-20.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Hủy Món / Hủy Đơn</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Từ chối phục vụ khi hết món hoặc đơn sai.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">NV4: Cập Nhật Hóa Đơn</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Món ăn tự động vào hóa đơn bàn.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014258/GMQRF_051225-25.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Ngoại Lệ: Hủy Món Lẻ (B1)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Bấm 'X' để hủy từng món.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014229/GMQRF_051225-21.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Ngoại Lệ: Hủy Món Lẻ (B2)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Chọn lý do hủy.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014237/GMQRF_051225-22.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Ngoại Lệ: Hủy Toàn Bộ Đơn (B1)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Nhấn nút 'Hủy'.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014244/GMQRF_051225-23.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Cập Nhật Hóa Đơn</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Món đã gọi tự động vào hóa đơn bàn đang phục vụ.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Ngoại Lệ: Hủy Toàn Bộ Đơn (B2)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Chọn lý do từ chối đơn.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
-                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014258/GMQRF_051225-25.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014251/GMQRF_051225-24.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex items-center justify-center p-12">
             <div class="flex flex-row items-center gap-12 max-w-6xl w-full">
                 <div class="flex-1 text-right border-r-4 border-orange-500 pr-12 animate-zoom-in">
-                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Tính Năng Nâng Cao</h2>
+                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Phần 4:<br>Tính Năng Nâng Cao</h2>
                 </div>
                 <div class="flex-1 animate-zoom-in delay-100">
-                    <p class="text-2xl text-gray-700">Xử lý các tình huống thực tế phát sinh.</p>
+                    <p class="text-2xl text-gray-700">Các tình huống thực tế khác.</p>
                 </div>
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Xử Lý Lỗi Thanh Toán</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Khi khách không quét được QR thanh toán online.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Chi Tiết Trạng Thái Món</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Khách nhấn "Món đã gọi" để xem chi tiết.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014306/GMQRF_051225-26.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Hiển Thị Trạng Thái</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Chưa phục vụ, Đã phục vụ, Đã hủy.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014318/GMQRF_051225-27.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Xem Món Đã Hủy</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014337/GMQRF_051225-28.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Thông Tin Hoàn Tiền</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Với đơn thanh toán trước bị hủy.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014346/GMQRF_051225-29.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Phân Quyền Nhân Viên</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Cấp quyền Bồi bàn hoặc Thêm mới hóa đơn.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014354/GMQRF_051225-30.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Lỗi Thanh Toán QR (Khách)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Khách chọn "Thanh toán phương thức khác".</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014402/GMQRF_051225-31.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Lỗi Thanh Toán QR (Nhân viên)</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Cảnh báo "Chưa thanh toán" xuất hiện.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014408/GMQRF_051225-32.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Gọi Thêm Món</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Nhân viên thêm món tại quầy, App khách tự cập nhật.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Xử Lý Thanh Toán Thủ Công</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Thu tiền mặt và xác nhận.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014416/GMQRF_051225-33.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Thêm Món Tại Quầy</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Nhân viên thêm món trực tiếp vào hóa đơn.</p>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014424/GMQRF_051225-34.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Thao Tác Trên Mobile</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Nhân viên phục vụ nhận thông báo ngay trên điện thoại.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Cập Nhật Phía Khách Hàng</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Món thêm tại quầy tự động hiện trên điện thoại khách.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014447/GMQRF_051225-35.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Hủy Lượt Gọi (Từ Quầy) B1</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014459/GMQRF_051225-36.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Hủy Lượt Gọi (Từ Quầy) B2</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014509/GMQRF_051225-37.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Hiển Thị Hủy (Khách Hàng) 1</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Trường hợp bàn chưa có đơn cũ.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014517/GMQRF_051225-38.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Hiển Thị Hủy (Khách Hàng) 2</h2>
+            <p class="text-gray-700 mb-4 animate-zoom-in">Trường hợp bàn đang có đơn cũ.</p>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014526/GMQRF_051225-39.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex items-center justify-center p-12">
+            <div class="flex flex-row items-center gap-12 max-w-6xl w-full">
+                <div class="flex-1 text-right border-r-4 border-blue-600 pr-12 animate-zoom-in">
+                    <h2 class="text-5xl font-extrabold text-blue-900 leading-tight">Phần 5:<br>Thao Tác Trên Mobile & POS</h2>
+                </div>
+                <div class="flex-1 animate-zoom-in delay-100">
+                    <p class="text-2xl text-gray-700">Xử lý linh hoạt trên mọi thiết bị.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Mobile App: Thông Báo</h2>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014542/GMQRF_051225-40.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
 
         <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
-            <h2 class="text-3xl font-bold text-blue-900 mb-2 shrink-0 animate-zoom-in">Thao Tác Trên POS</h2>
-            <p class="text-gray-700 mb-4 text-center shrink-0 animate-zoom-in font-medium">Giao diện tối ưu cho máy POS cảm ứng.</p>
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Mobile App: Xác Nhận</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014549/GMQRF_051225-41.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Mobile App: Hủy Món</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014557/GMQRF_051225-42.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Mobile App: Hủy Đơn</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014603/GMQRF_051225-43.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">Mobile App: Cảnh Báo Thanh Toán</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014612/GMQRF_051225-44.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Thông Báo</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014632/GMQRF_051225-46.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Danh Sách Đơn</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014640/GMQRF_051225-47.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Xác Nhận</h2>
             <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
                 <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014650/GMQRF_051225-48.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
             </div>
         </div>
-        
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Hủy Món</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014657/GMQRF_051225-49.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Hủy Đơn</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014705/GMQRF_051225-50.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Cảnh Báo Thanh Toán</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014711/GMQRF_051225-51.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
+        <div class="slide glass flex flex-col items-center justify-start pt-10 pb-6 px-12 h-full">
+            <h2 class="text-3xl font-bold text-blue-900 mb-2 animate-zoom-in">POS: Thanh Toán Bổ Sung</h2>
+            <div class="flex-1 min-h-0 w-full flex justify-center items-center overflow-hidden animate-zoom-in delay-100">
+                <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05014719/GMQRF_051225-52.png" class="max-h-full w-auto object-contain rounded-lg shadow-xl border border-white/50">
+            </div>
+        </div>
+
         <div class="slide flex items-center justify-center w-full h-full p-0" data-type="infographic">
             <img src="https://cdn-kvweb.kiotviet.vn/kiotviet-website/wp-content/uploads/2025/12/05022408/THUC-DON-DIEN-TU-GOI-MON-QR.jpg" class="max-w-[95%] max-h-[95%] object-contain rounded-3xl shadow-2xl border-4 border-white/50 animate-zoom-in">
         </div>
@@ -287,6 +528,7 @@
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         const logo = document.getElementById('global-logo');
+        const progressBar = document.getElementById('progress-bar');
 
         function updateUI(index) {
             slides.forEach((slide, i) => {
@@ -299,7 +541,6 @@
                         el.style.animation = '';
                     });
                     
-                    // Ẩn Logo ở Slide Infographic để tránh che ảnh
                     const isInfographic = slide.getAttribute('data-type') === 'infographic';
                     if (isInfographic) logo.style.opacity = '0';
                     else logo.style.opacity = '1';
@@ -307,6 +548,9 @@
                     slide.classList.remove('active');
                 }
             });
+            // Update Progress Bar
+            const progress = ((index + 1) / totalSlides) * 100;
+            progressBar.style.width = `${progress}%`;
         }
 
         function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateUI(currentSlide); }
